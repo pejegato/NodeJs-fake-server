@@ -1,7 +1,26 @@
 var faker = require('faker');
 
-var database = { pacientes: []};
+var database = { pacientes: [], doctores: [], especialidades: []};
 
+database.especialidades.push({
+		
+			id: 1,
+			descripcion: "medicina general"
+		
+	})
+	database.especialidades.push({
+		
+			id: 2,
+			descripcion: "medicina Interna"
+		
+	})
+	database.especialidades.push({
+		
+			id: 3,
+			descripcion: "Pediatria"
+		
+	})
+	
 for (var i = 1; i<= 50; i++) {
 
 
@@ -16,7 +35,7 @@ for (var i = 1; i<= 50; i++) {
         id: i,
         rut: faker.random.number({min:100000000, max:999999999}),
         nombres : persona.nombres,
-        apellidoPaterno : faker.name.firstName(),
+        apellidoPaterno : faker.name.lastName(),
         apellidoMaterno : faker.name.lastName(),
         sexo : persona.sexo,
         fechaNacimiento : faker.date.past(faker.random.number({min:0, max:100})),
@@ -30,7 +49,30 @@ for (var i = 1; i<= 50; i++) {
         historialMedico : faker.lorem.paragraph(),
         prioridad : faker.random.arrayElement([ 'C1','C2','C3','C4','A1','A2','A3','A4','B1','B2','B3','B4'])
 
+    });
+	
+	database.doctores.push({
+
+        id: i,
+        rut: faker.random.number({min:100000000, max:999999999}),
+        nombres : persona.nombres,
+        apellidoPaterno : faker.name.lastName(),
+        apellidoMaterno : faker.name.lastName(),
+        sexo : persona.sexo,
+        fechaNacimiento : faker.date.past(faker.random.number({min:0, max:100})),
+        ciudad : faker.address.city(),
+        comuna : faker.address.city(),
+        direccion : faker.address.streetName(),
+        numero : faker.random.number(3),
+        complemento: faker.address.secondaryAddress(),
+        telefono1 : faker.phone.phoneNumber("5#########"),
+        telefono2 : faker.phone.phoneNumber("9#########"),
+        historialMedico : faker.lorem.paragraph(),
+        prioridad : faker.random.arrayElement([ 'C1','C2','C3','C4','A1','A2','A3','A4','B1','B2','B3','B4']),
+		especialidad: faker.random.arrayElement([ '1', '2', '3'])
     })
+	
+	
 }
 
 console.log(JSON.stringify(database));
